@@ -25,13 +25,17 @@ APP="live"
 
 
 IFS=$'\n'
-select ch in "quit" $sortedstations; do
+select ch in "quit" $sortedstations "world"; do
     #echo $ch;
 
     if [ -z "$ch" ]; then
 	continue
     fi
     
+    if [ "$ch" = "world" ]; then
+	. worldradio-dl.sh -play
+    fi
+
     if [ "$ch" = "quit" ]; then
 	exit
     fi
