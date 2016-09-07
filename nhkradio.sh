@@ -1,6 +1,10 @@
 #!/bin/bash
 #
 
+
+# World TV live
+TV=http://web-cache.stream.ne.jp/www11/nhkworld-tv/domestic/222467/live_tv.m3u8
+
 #
 # https://gist.github.com/riocampos/5656450
 #
@@ -25,7 +29,7 @@ APP="live"
 
 
 IFS=$'\n'
-select ch in "quit" $sortedstations "world"; do
+select ch in "quit" $sortedstations "world" "tv"; do
     #echo $ch;
 
     if [ -z "$ch" ]; then
@@ -34,6 +38,12 @@ select ch in "quit" $sortedstations "world"; do
     
     if [ "$ch" = "world" ]; then
 	. worldradio-dl.sh -play
+	continue
+    fi
+
+    if [ "$ch" = "tv" ]; then
+	mplayer -loop 0 -fs $TV
+	continue
     fi
 
     if [ "$ch" = "quit" ]; then
