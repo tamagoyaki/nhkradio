@@ -29,7 +29,7 @@ APP="live"
 
 
 IFS=$'\n'
-select ch in "quit" $sortedstations "world" "tv"; do
+select ch in "quit" $sortedstations "world" "tv" "tv - sound only"; do
     #echo $ch;
 
     if [ -z "$ch" ]; then
@@ -43,6 +43,11 @@ select ch in "quit" $sortedstations "world" "tv"; do
 
     if [ "$ch" = "tv" ]; then
 	mplayer -loop 0 -fs $TV
+	continue
+    fi
+
+    if [ "$ch" = "tv - sound only" ]; then
+	mplayer -loop 0 -novideo $TV
 	continue
     fi
 
